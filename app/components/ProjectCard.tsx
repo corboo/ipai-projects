@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { Project } from "../data/projects";
+import { useComments } from "../hooks/useComments";
 
 function getStatusColor(status: string): string {
   switch (status) {
@@ -60,15 +62,49 @@ function getPriorityBg(priority: string): string {
   }
 }
 
+function formatTimestamp(ts: number): string {
+  const d = new Date(ts);
+  const now = new Date();
+  const diffMs = now.getTime() - d.getTime();
+  const diffMin = Math.floor(diffMs / 60000);
+  const diffHr = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHr / 24);
+
+  if (diffMin < 1) return "just now";
+  if (diffMin < 60) return `${diffMin}m ago`;
+  if (diffHr < 24) return `${diffHr}h ago`;
+  if (diffDay < 7) return `${diffDay}d ago`;
+
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
+  });
+}
+
 export default function ProjectCard({ project }: { project: Project }) {
   const statusColor = getStatusColor(project.status);
   const statusBg = getStatusBg(project.status);
   const priorityColor = getPriorityColor(project.priority);
   const priorityBg = getPriorityBg(project.priority);
 
+  const { comments, addComment, deleteComment } = useComments(project.id);
+  const [draft, setDraft] = useState("");
+  const [showComments, setShowComments] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = draft.trim();
+    if (!text) return;
+    addComment(text);
+    setDraft("");
+  };
+
+  const commentCount = comments.length;
+
   return (
     <div
-      className="group relative overflow-hidden transition-all duration-300 hover:translate-y-[-2px]"
+      className="group relative flex flex-col overflow-hidden transition-all duration-300 hover:translate-y-[-2px]"
       style={{
         background: "#1A1D2B",
         borderRadius: "12px",
@@ -127,10 +163,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </h3>
 
       {/* Description */}
-      <p
-        className="text-sm leading-relaxed mb-4"
-        style={{ color: "#9CA3AF" }}
-      >
+      <p className="text-sm leading-relaxed mb-4" style={{ color: "#9CA3AF" }}>
         {project.description}
       </p>
 
@@ -168,7 +201,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
       {/* Links */}
       {project.links.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.links.map((link) => (
             <a
               key={link.url}
@@ -190,7 +223,13 @@ export default function ProjectCard({ project }: { project: Project }) {
                 e.currentTarget.style.borderColor = "rgba(212, 168, 71, 0.2)";
               }}
             >
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -202,6 +241,154 @@ export default function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       )}
+
+      {/* ── Comments section ── */}
+      <div
+        className="mt-auto pt-3"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        {/* Toggle button */}
+        <button
+          onClick={() => setShowComments(!showComments)}
+          className="flex items-center gap-1.5 text-xs transition-colors"
+          style={{ color: "#6B7280" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A847")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#6B7280")}
+        >
+          <svg
+            className="w-3.5 h-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+            />
+          </svg>
+          {commentCount > 0
+            ? `${commentCount} comment${commentCount !== 1 ? "s" : ""}`
+            : "Add note"}
+          <svg
+            className="w-3 h-3 transition-transform"
+            style={{
+              transform: showComments ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </button>
+
+        {/* Expanded comments area */}
+        {showComments && (
+          <div className="mt-3 space-y-2">
+            {/* Existing comments */}
+            {comments.length > 0 && (
+              <div
+                className="space-y-1.5 max-h-48 overflow-y-auto pr-1"
+                style={{ scrollbarWidth: "thin" }}
+              >
+                {comments.map((c) => (
+                  <div
+                    key={c.id}
+                    className="group/comment flex gap-2 items-start rounded-lg px-3 py-2"
+                    style={{ background: "rgba(255,255,255,0.03)" }}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className="text-xs leading-relaxed break-words"
+                        style={{ color: "#D1D5DB" }}
+                      >
+                        {c.text}
+                      </p>
+                      <span
+                        className="text-[10px] mt-0.5 block"
+                        style={{ color: "#6B7280" }}
+                      >
+                        {formatTimestamp(c.timestamp)}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => deleteComment(c.id)}
+                      className="opacity-0 group-hover/comment:opacity-100 transition-opacity flex-shrink-0 p-0.5 rounded hover:bg-red-500/20"
+                      title="Delete comment"
+                      style={{ color: "#6B7280" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "#EF4444")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color = "#6B7280")
+                      }
+                    >
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Input form */}
+            <form onSubmit={handleSubmit} className="flex gap-1.5">
+              <input
+                type="text"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                placeholder="Add a note…"
+                className="flex-1 min-w-0 text-xs px-3 py-2 rounded-lg text-white placeholder-gray-500 outline-none transition-all"
+                style={{
+                  background: "#151829",
+                  border: "1px solid #2A2E3F",
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "rgba(212, 168, 71, 0.4)";
+                  e.target.style.boxShadow =
+                    "0 0 0 2px rgba(212, 168, 71, 0.1)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#2A2E3F";
+                  e.target.style.boxShadow = "none";
+                }}
+              />
+              <button
+                type="submit"
+                disabled={!draft.trim()}
+                className="flex-shrink-0 text-xs font-semibold px-3 py-2 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                style={{
+                  background:
+                    draft.trim()
+                      ? "linear-gradient(135deg, #D4A847, #B8922E)"
+                      : "rgba(212, 168, 71, 0.15)",
+                  color: draft.trim() ? "#000" : "#D4A847",
+                }}
+              >
+                Add
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

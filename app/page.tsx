@@ -29,7 +29,7 @@ const PROJECTS: Project[] = [
   { id: "instagram", rank: 4, priority: "P1", category: "Real-Time Personalities", name: "Instagram Integration", description: "Instagram Graph API for personality accounts. Nigel (@nigelthistledown) set up — 4,396 followers, publishing + reading.", status: "Active", team: "CB", links: [
     { label: "Nigel IG", url: "https://instagram.com/nigelthistledown" },
   ]},
-  { id: "megaphone", rank: 5, priority: "P1", category: "Real-Time Personalities", name: "Spreaker → Megaphone Migration", description: "15,647 shows migrated to Megaphone FM. New primary podcast platform. Analytics dashboard built.", status: "Active", team: "Alberto, CB, Ann", links: [
+  { id: "megaphone", rank: 5, priority: "P1", category: "Real-Time Personalities", name: "Megaphone FM Migration", description: "15,647 shows migrated to Megaphone FM. New primary podcast platform. Analytics dashboard built.", status: "Active", team: "Alberto, CB, Ann", links: [
     { label: "Dashboard", url: "https://megaphone-dashboard.vercel.app" },
     { label: "Analytics", url: "https://megaphone-dashboard.vercel.app/analytics/" },
     { label: "GitHub", url: "https://github.com/corboo/megaphone-dashboard" },
@@ -48,12 +48,6 @@ const PROJECTS: Project[] = [
   // P3 — Agent OS / Internal Agents
   { id: "cb", rank: 9, priority: "P3", category: "Agent OS / Internal", name: "CB ⚡ — Co-Chief AI Officer", description: "Internal AI agent. Dashboards, automations, email, monitoring, builds. Runs on Mac Mini via Clawdbot.", status: "Active", team: "CB", links: []},
   { id: "one", rank: 10, priority: "P3", category: "Agent OS / Internal", name: "One — Engineering Agent", description: "Internal AI agent on AWS. Engineering tasks, dashboard serving, infrastructure.", status: "Active", team: "One", links: []},
-  { id: "oaisys", rank: 11, priority: "P3", category: "Agent OS / Internal", name: "OAISYS Platform", description: "AI personality platform. Hub-and-spoke architecture. 8 personalities. Consumer app + API.", status: "Live", team: "CB, One", links: [
-    { label: "App", url: "https://oaisys-v2.vercel.app" },
-    { label: "Onboarding", url: "https://oaisys-onboarding-v2.vercel.app" },
-    { label: "API Health", url: "https://oaisys-api.ngrok.io/health" },
-  ]},
-
   // #4 ranked — Meta Glasses
   { id: "metaglasses", rank: 12, priority: "P4", category: "Hardware Integration", name: "Meta Glasses — Claire App", description: "Claire Delish on Meta Ray-Ban glasses. Voice + vision — sees what you're looking at, gives cooking/nutrition advice. iOS app with Hume EVI.", status: "In Progress", team: "CB, Boo", links: []},
 
@@ -65,8 +59,10 @@ const PROJECTS: Project[] = [
   { id: "mediakit", rank: 14, priority: "Other", category: "Marketing", name: "IPAI Media Kit", description: "Auto-refreshing media kit. 956K downloads/30d, 12.7K active shows.", status: "Live", team: "CB", links: [
     { label: "Live", url: "https://ipai-media-kit.vercel.app" },
   ]},
-  { id: "spreaker", rank: 15, priority: "Other", category: "Analytics", name: "Spreaker Analytics Dashboard", description: "Weekly download, revenue, impression tracking from Arc S3. Phasing out as Megaphone becomes primary.", status: "Active", team: "CB", links: [
-    { label: "Dashboard", url: "https://spreaker-analytics-dashboard.vercel.app" },
+  { id: "megaphone-analytics", rank: 15, priority: "Other", category: "Analytics", name: "Megaphone FM Analytics", description: "Podcast analytics dashboard. 15,647 shows, 309K episodes, listener geo/platform/device breakdowns, ad impressions.", status: "Active", team: "CB", links: [
+    { label: "Dashboard", url: "https://megaphone-dashboard.vercel.app" },
+    { label: "Listener Analytics", url: "https://megaphone-dashboard.vercel.app/analytics/" },
+    { label: "GitHub", url: "https://github.com/corboo/megaphone-dashboard" },
   ]},
   { id: "deals", rank: 16, priority: "Other", category: "Tools", name: "Deal Pipeline Tools", description: "Deal Scorer + Partnership Scorer + Character Bible Builder for evaluating opportunities.", status: "Live", team: "CB", links: [
     { label: "Deal Scorer", url: "https://deal-scorer.ngrok.dev" },
@@ -77,7 +73,7 @@ const PROJECTS: Project[] = [
     { label: "App", url: "https://ipai-forge-text-to-video.streamlit.app/" },
   ]},
   { id: "voicebridge", rank: 18, priority: "Other", category: "Infrastructure", name: "Voice Bridge (Telnyx)", description: "Phone-accessible AI voice. +1 (213) 221-2468.", status: "Active", team: "CB", links: []},
-  { id: "reporting", rank: 19, priority: "Other", category: "Automation", name: "Automated Reporting Suite", description: "Trending Gaps (6am), Morning Briefing (6:30am), Arc Digest (9am), YouTube Dashboard (7:30am), Spreaker (every 6h).", status: "Active", team: "CB", links: []},
+  { id: "reporting", rank: 19, priority: "Other", category: "Automation", name: "Automated Reporting Suite", description: "Trending Gaps (6am), Morning Briefing (6:30am), Arc Digest (9am), YouTube Dashboard (7:30am), Megaphone (every 6h).", status: "Active", team: "CB", links: []},
 ];
 
 const priorityColors: Record<string, string> = {

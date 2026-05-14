@@ -175,7 +175,7 @@ export default function Dashboard({ onLogout }: { onLogout: () => void }) {
               {/* Project cards grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {group.projects.map((project) => (
-                  <ProjectCard key={project.name} project={project} />
+                  <ProjectCard key={project.id} project={project} />
                 ))}
               </div>
             </section>

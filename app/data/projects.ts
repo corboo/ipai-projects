@@ -7,6 +7,7 @@ export interface ProjectLink {
 }
 
 export interface Project {
+  id: string;
   name: string;
   description: string;
   priority: Priority;
@@ -33,6 +34,7 @@ export const projectGroups: PriorityGroup[] = [
     subtitle: "Board Priority",
     projects: [
       {
+        id: "aria",
         name: "ARIA — Real-Time Personality Pilot",
         description:
           "Live AI personality voice interactions. Board-approved priority. Alberto leading pilot.",
@@ -51,6 +53,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Real-Time AI",
       },
       {
+        id: "mcp",
         name: "MCP Integration (Model Context Protocol)",
         description:
           "Deploy IPAI personalities as MCP tools for Claude/ChatGPT. Nigel MCP server built, pending DNS setup.",
@@ -64,6 +67,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Integration",
       },
       {
+        id: "youtube",
         name: "YouTube Integration",
         description:
           "Video content pipeline. 127 subs, 34.7K views, 139 videos. Auto-dashboard.",
@@ -83,6 +87,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Content",
       },
       {
+        id: "instagram",
         name: "Instagram Integration",
         description:
           "Instagram Graph API for personality accounts. Nigel (@nigelthistledown) set up with 4,396 followers. Publishing + reading capabilities.",
@@ -93,6 +98,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Social Media",
       },
       {
+        id: "megaphone-migration",
         name: "Spreaker → Megaphone Migration",
         description:
           "15,647 shows migrated from Spreaker to Megaphone FM. New primary podcast platform.",
@@ -128,6 +134,7 @@ export const projectGroups: PriorityGroup[] = [
     subtitle: "Autonomous Agents",
     projects: [
       {
+        id: "agent-nigel",
         name: "Agent Nigel — Autonomous Content Creator",
         description:
           "Fully autonomous AI agent producing garden/nature content across podcast, video, Instagram. 4 Megaphone shows, IG account, content pipeline.",
@@ -148,6 +155,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Autonomous Agent",
       },
       {
+        id: "agent-monday",
         name: "Agent Monday (TBD)",
         description: "Next autonomous agent in development.",
         priority: "P2",
@@ -157,6 +165,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Autonomous Agent",
       },
       {
+        id: "arc",
         name: "Arc Content Production Engine",
         description:
           "Core content factory. Auto-produces podcasts at scale. v1.165. Handles scripting, TTS, publishing, Apple Podcasts submission.",
@@ -176,6 +185,7 @@ export const projectGroups: PriorityGroup[] = [
     subtitle: "Agent OS / Internal Agents",
     projects: [
       {
+        id: "cb",
         name: "CB (Clawdbot) — Co-Chief AI Officer",
         description:
           "Internal AI agent. Handles dashboards, automations, email, monitoring, builds. Runs on Mac Mini via Clawdbot gateway.",
@@ -186,6 +196,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Internal Agent",
       },
       {
+        id: "one",
         name: "One — Engineering Agent",
         description:
           "Internal AI agent on AWS. Handles engineering tasks, dashboard serving, infrastructure.",
@@ -196,6 +207,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Internal Agent",
       },
       {
+        id: "oaisys",
         name: "OAISYS Platform",
         description:
           "AI personality platform. Hub-and-spoke architecture. 8 personalities. Consumer app + API.",
@@ -217,6 +229,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Platform",
       },
       {
+        id: "content-review",
         name: "Content Review Portal",
         description:
           "HITL content approval portal. 91 items pending review.",
@@ -236,6 +249,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Tools",
       },
       {
+        id: "media-kit",
         name: "IPAI Media Kit",
         description:
           "Auto-refreshing media kit. 956K downloads/30d, 12.7K active shows.",
@@ -248,6 +262,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Marketing",
       },
       {
+        id: "spreaker-analytics",
         name: "Spreaker Analytics Dashboard",
         description:
           "Weekly download, revenue, impression tracking from Arc S3 data.",
@@ -264,6 +279,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Analytics",
       },
       {
+        id: "deal-pipeline",
         name: "Deal Pipeline Tools",
         description:
           "Deal Scorer + Comprehensive Partnership Scorer + Character Bible Builder",
@@ -288,6 +304,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Business",
       },
       {
+        id: "forge",
         name: "FORGE — AI Video Generator",
         description:
           "Text/audio to video generation tool. LTX 2.3, Streamlit app.",
@@ -303,6 +320,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Creative Tools",
       },
       {
+        id: "dashboards",
         name: "Dashboards & Automated Reporting",
         description:
           "Trending Gaps (daily 6am), Morning Briefing (daily 6:30am), Arc GitHub Digest (daily 9am), YouTube Dashboard (daily 7:30am), Spreaker Dashboard (every 6h)",
@@ -314,6 +332,7 @@ export const projectGroups: PriorityGroup[] = [
         category: "Automation",
       },
       {
+        id: "voice-bridge",
         name: "Voice Bridge (Telnyx)",
         description:
           "Phone-accessible AI voice. +1 (213) 221-2468. launchd service.",
