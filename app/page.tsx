@@ -29,25 +29,27 @@ const PROJECTS: Project[] = [
   { id: "instagram", rank: 4, priority: "P1", category: "Real-Time Personalities", name: "Instagram Integration", description: "Instagram Graph API for personality accounts. Nigel (@nigelthistledown) set up — 4,396 followers, publishing + reading.", status: "Active", team: "CB", links: [
     { label: "Nigel IG", url: "https://instagram.com/nigelthistledown" },
   ]},
-  { id: "megaphone", rank: 5, priority: "P1", category: "Real-Time Personalities", name: "Megaphone FM Migration", description: "15,647 shows migrated to Megaphone FM. New primary podcast platform. Analytics dashboard built.", status: "Active", team: "Alberto, CB, Ann", links: [
+  { id: "megaphone", rank: 6, priority: "P1", category: "Real-Time Personalities", name: "Megaphone FM Migration", description: "15,647 shows migrated to Megaphone FM. New primary podcast platform. Analytics dashboard built.", status: "Active", team: "Alberto, CB, Ann", links: [
     { label: "Dashboard", url: "https://megaphone-dashboard.vercel.app" },
     { label: "Analytics", url: "https://megaphone-dashboard.vercel.app/analytics/" },
     { label: "GitHub", url: "https://github.com/corboo/megaphone-dashboard" },
     { label: "Megaphone API", url: "https://developers.megaphone.fm/" },
   ]},
 
+  { id: "makecom-megaphone", rank: 5, priority: "P1", category: "Real-Time Personalities", name: "Migrate Make.com & Dailies to Megaphone", description: "Migrate all Make.com automation scenarios and daily content workflows from Spreaker to Megaphone FM publishing.", status: "Planned", team: "CB, Alberto", links: []},
+
   // P2 — Autonomous Agents
-  { id: "nigel", rank: 6, priority: "P2", category: "Autonomous Agents", name: "Agent Nigel — Autonomous Content Creator", description: "Fully autonomous AI agent producing garden/nature content across podcast, video, Instagram. 4 Megaphone shows, IG account.", status: "Active", team: "CB, One", links: [
+  { id: "nigel", rank: 7, priority: "P2", category: "Autonomous Agents", name: "Agent Nigel — Autonomous Content Creator", description: "Fully autonomous AI agent producing garden/nature content across podcast, video, Instagram. 4 Megaphone shows, IG account.", status: "Active", team: "CB, One", links: [
     { label: "Docs", url: "https://agent-nigel-docs.vercel.app" },
     { label: "Content Portal", url: "https://content-review-portal.vercel.app" },
     { label: "Instagram", url: "https://instagram.com/nigelthistledown" },
   ]},
-  { id: "monday", rank: 7, priority: "P2", category: "Autonomous Agents", name: "Agent Monday", description: "Next autonomous agent in development.", status: "Planned", team: "TBD", links: []},
-  { id: "arc", rank: 8, priority: "P2", category: "Autonomous Agents", name: "Arc Content Production Engine", description: "Core content factory. Auto-produces podcasts at scale. v1.165. Scripting, TTS, publishing, Apple Podcasts submission.", status: "Active — v1.165", team: "David McHealy, Alberto", links: []},
+  { id: "monday", rank: 8, priority: "P2", category: "Autonomous Agents", name: "Agent Monday", description: "Next autonomous agent in development.", status: "Planned", team: "TBD", links: []},
+  { id: "arc", rank: 9, priority: "P2", category: "Autonomous Agents", name: "Arc Content Production Engine", description: "Core content factory. Auto-produces podcasts at scale. v1.165. Scripting, TTS, publishing, Apple Podcasts submission.", status: "Active — v1.165", team: "David McHealy, Alberto", links: []},
 
   // P3 — Agent OS / Internal Agents
-  { id: "cb", rank: 9, priority: "P3", category: "Agent OS / Internal", name: "CB ⚡ — Co-Chief AI Officer", description: "Internal AI agent. Dashboards, automations, email, monitoring, builds. Runs on Mac Mini via Clawdbot.", status: "Active", team: "CB", links: []},
-  { id: "one", rank: 10, priority: "P3", category: "Agent OS / Internal", name: "One — Engineering Agent", description: "Internal AI agent on AWS. Engineering tasks, dashboard serving, infrastructure.", status: "Active", team: "One", links: []},
+  { id: "cb", rank: 10, priority: "P3", category: "Agent OS / Internal", name: "CB ⚡ — Co-Chief AI Officer", description: "Internal AI agent. Dashboards, automations, email, monitoring, builds. Runs on Mac Mini via Clawdbot.", status: "Active", team: "CB", links: []},
+  { id: "one", rank: 11, priority: "P3", category: "Agent OS / Internal", name: "One — Engineering Agent", description: "Internal AI agent on AWS. Engineering tasks, dashboard serving, infrastructure.", status: "Active", team: "One", links: []},
   // #4 ranked — Meta Glasses
   { id: "metaglasses", rank: 12, priority: "P4", category: "Hardware Integration", name: "Meta Glasses — Claire App", description: "Claire Delish on Meta Ray-Ban glasses. Voice + vision — sees what you're looking at, gives cooking/nutrition advice. iOS app with Hume EVI.", status: "In Progress", team: "CB, Boo", links: []},
 
