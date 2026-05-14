@@ -44,6 +44,10 @@ function getPriorityColor(priority: string): string {
       return "#F59E0B";
     case "P3":
       return "#3B82F6";
+    case "#4":
+      return "#A855F7";
+    case "Other":
+      return "#9CA3AF";
     default:
       return "#6B7280";
   }
@@ -57,6 +61,10 @@ function getPriorityBg(priority: string): string {
       return "rgba(245, 158, 11, 0.12)";
     case "P3":
       return "rgba(59, 130, 246, 0.12)";
+    case "#4":
+      return "rgba(168, 85, 247, 0.12)";
+    case "Other":
+      return "rgba(156, 163, 175, 0.08)";
     default:
       return "rgba(107, 114, 128, 0.12)";
   }
@@ -80,6 +88,17 @@ function formatTimestamp(ts: number): string {
     day: "numeric",
     year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
   });
+}
+
+function getPriorityLabel(priority: string): string {
+  switch (priority) {
+    case "#4":
+      return "#4";
+    case "Other":
+      return "Other";
+    default:
+      return priority;
+  }
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -130,7 +149,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             border: `1px solid ${priorityColor}33`,
           }}
         >
-          {project.priority}
+          {getPriorityLabel(project.priority)}
         </span>
         <span
           className="text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5"
@@ -145,6 +164,16 @@ export default function ProjectCard({ project }: { project: Project }) {
             style={{ background: statusColor }}
           />
           {project.statusNote || project.status}
+        </span>
+        <span
+          className="text-xs font-mono font-semibold px-2 py-1 rounded-full"
+          style={{
+            background: "rgba(212, 168, 71, 0.08)",
+            color: "#D4A847",
+            border: "1px solid rgba(212, 168, 71, 0.15)",
+          }}
+        >
+          #{project.rank}
         </span>
         <span
           className="text-xs px-2.5 py-1 rounded-full ml-auto"

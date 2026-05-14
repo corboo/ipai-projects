@@ -23,6 +23,18 @@ function getSectionStyle(priority: string) {
         gradient: "linear-gradient(90deg, rgba(59,130,246,0.15) 0%, transparent 100%)",
         borderColor: "rgba(59,130,246,0.3)",
       };
+    case "#4":
+      return {
+        accent: "#A855F7",
+        gradient: "linear-gradient(90deg, rgba(168,85,247,0.15) 0%, transparent 100%)",
+        borderColor: "rgba(168,85,247,0.3)",
+      };
+    case "Other":
+      return {
+        accent: "#9CA3AF",
+        gradient: "linear-gradient(90deg, rgba(156,163,175,0.08) 0%, transparent 100%)",
+        borderColor: "rgba(156,163,175,0.2)",
+      };
     default:
       return {
         accent: "#6B7280",
